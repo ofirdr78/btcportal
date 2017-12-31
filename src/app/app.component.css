@@ -29,6 +29,9 @@ body {
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 26.4px;   
-	width: 100px; 
+	width: 200px; 
+	position: relative;
+	top: 680px;
+	left: 10px;
 }
 

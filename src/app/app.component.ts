@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from './app.service';
 import { TimerObservable } from 'rxjs/observable/TimerObservable';
-import { Subscription } from 'rxjs/Subscription'
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   pos2: number;
   private tick: string;
   private subscription: Subscription;
+  private subscription2: Subscription;
   constructor(private appService: AppService) {
     this.coindeskRate = '';
     this.bitstampRate = '';
@@ -30,8 +31,8 @@ export class AppComponent implements OnInit {
     this.pos2 = 0;
     this.partialText = '';
     this.partialText2 = '';
-    this.fullText = 'Why there are more than one BTC rate?';
-    this.fullText2 = 'The BTC owners trade via different websites. Each website has it\'s own rate, similar to banks\' currency rates.';
+    this.fullText = 'Why there are more than one Bitcoin rate?';
+    this.fullText2 = 'The Bitcoin owners trade via different websites. Each website has it\'s own rate, similar to banks\' currency rates.';
     this.now = new Date();
 
     this.currentTime = [ this.now.getMonth() + 1, this.now.getDate(), this.now.getFullYear() ];
@@ -90,7 +91,7 @@ export class AppComponent implements OnInit {
 
   explanation() {
     const timer = TimerObservable.create(100, 100);
-    this.subscription = timer.subscribe(t => {
+    this.subscription2 = timer.subscribe(t => {
       if (this.pos <= this.fullText.length - 1) {
         this.partialText = this.partialText + this.fullText[this.pos];
         this.pos++;
@@ -99,7 +100,7 @@ export class AppComponent implements OnInit {
             this.partialText2 = this.partialText2 + this.fullText2[this.pos2];
             this.pos2++;
            } else {
-            this.subscription.unsubscribe();
+            this.subscription2.unsubscribe();
            }
         }
        });

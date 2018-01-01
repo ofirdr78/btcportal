@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
   pos: number;
   pos2: number;
   cursor: string;
+  companyLogo: string;
+  companyLogo2: string;
   private tick: string;
   private subscription: Subscription;
   private subscription2: Subscription;
@@ -34,6 +36,8 @@ export class AppComponent implements OnInit {
     this.cursor = '_';
     this.partialText = '';
     this.partialText2 = '';
+    this.companyLogo = 'BTCportal. All Bitcoin rates.';
+    this.companyLogo2 = 'All Bitcoin rates.';
     this.fullText = 'Why there are more than one Bitcoin rate?';
     this.fullText2 = 'The Bitcoin owners trade via different websites. Each website has it\'s own rate, similar to the bank currency rates.';
     this.now = new Date();
@@ -96,7 +100,7 @@ export class AppComponent implements OnInit {
   }
 
   explanation() {
-    const timer = TimerObservable.create(100, 100);
+    const timer = TimerObservable.create(70, 70);
     this.subscription2 = timer.subscribe(t => {
       if (this.pos <= this.fullText.length - 1) {
         this.partialText = this.partialText.replace(/_/g, '');

@@ -12,7 +12,7 @@ body {
     color: white;
     opacity: 0.9;
     font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
-	font-size: px;
+	font-size: 20px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
@@ -24,7 +24,7 @@ body {
     color: white;
     opacity: 0.8;
     font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
-	font-size: 22px;
+	font-size: 24px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
@@ -35,3 +35,42 @@ body {
 	left: 10px;
 }
 
+.portal {
+	color: white;
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+	font-size: 50px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 42px;   
+	position: absolute;
+	top: 380px;
+	left: 670px;
+	-webkit-box-reflect: below 0 -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.4, transparent), to(rgba(0, 0, 0, 0.5))); }
+	.lang-en .effect-reflection {
+	  letter-spacing: 0.45em; }
+	.effect-reflection, .effect-reflection:after {
+	  font-size: 100px; }
+	.effect-reflection:after {
+	  color: #02aeef;
+	  content: attr(data-reflection);
+	  position: absolute;
+	  left: 0;
+	  text-align: center;
+	  top: 0;
+	  width: 100%;
+	  -webkit-mask-image: -webkit-linear-gradient(top, transparent, #000000); 
+}
+
+.portal2 {
+	color: white;
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+	font-size: 22px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;    
+	position: absolute;
+	top: 80px;
+	right: 80px;
+}

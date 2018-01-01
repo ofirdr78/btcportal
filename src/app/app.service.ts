@@ -1,36 +1,29 @@
 import 'rxjs/add/operator/toPromise';
-
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {HttpModule} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
-
+import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-
 
 @Injectable()
 export class AppService {
-  newData: any;
-
-
-  constructor(private http: Http) {
-    this.newData = {};
-
+  constructor(private http: HttpClient) {
   }
 
-  async coindesk(): Promise<any> {
+  coindesk(): Observable<any> {
     const url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
-    return this.http.get(url).toPromise();
+    return this.http.get(url);
+   }
 
-  }
-  async bitstamp(): Promise<any> {
+  bitstamp(): Observable<any> {
     const url = 'https://www.bitstamp.net/api/ticker/';
-    return this.http.get(url).toPromise();
+    return this.http.get(url);
   }
 
-  async hitbtc(): Promise<any> {
+  hitbtc(): Observable<any> {
     const url = 'https://api.hitbtc.com/api/2/public/ticker/btcusd';
-    return this.http.get(url).toPromise();
+    return this.http.get(url);
   }
 }
 

@@ -47,24 +47,26 @@ export class AppComponent implements OnInit {
 
   }
 
-  async coindesk() {
+  coindesk() {
     try {
-     const response = await this.appService.coindesk();
-     const res = response.json();
-     this.coindeskRate = res.bpi.USD.rate;
-     this.coindeskRate = this.coindeskRate.replace(/,/g, '');
-     this.coindeskRate = this.coindeskRate.substring(0, this.coindeskRate.length - 2);
+     const response = this.appService.coindesk();
+     response.subscribe(data => {
+      this.coindeskRate = data.bpi.USD.rate;
+      this.coindeskRate = this.coindeskRate.replace(/,/g, '');
+      this.coindeskRate = this.coindeskRate.substring(0, this.coindeskRate.length - 2);
+     });
    } catch (ex) {
      console.error(`AppComponent::get:: errored with: ${ex}`);
    }
   }
 
-  async bitstamp() {
+   bitstamp() {
     try {
-     const response = await this.appService.bitstamp();
-     const res = response.json();
-     this.bitstampRate = res.last;
-   } catch (ex) {
+      const response = this.appService.bitstamp();
+      response.subscribe(data => {
+       this.bitstampRate = data.last;
+   });
+     } catch (ex) {
      console.error(`AppComponent::get:: errored with: ${ex}`);
    }
   }
@@ -72,8 +74,9 @@ export class AppComponent implements OnInit {
   async hitbtc() {
     try {
      const response = await this.appService.hitbtc();
-     const res = response.json();
-     this.hitbtcRate = res.last;
+     response.subscribe(data => {
+      this.hitbtcRate = data.last;
+  });
    } catch (ex) {
      console.error(`AppComponent::get:: errored with: ${ex}`);
    }

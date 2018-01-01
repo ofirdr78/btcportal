@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from './app.service';
 import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',

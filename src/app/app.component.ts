@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   partialText2: string;
   pos: number;
   pos2: number;
+  cursor: string;
   private tick: string;
   private subscription: Subscription;
   private subscription2: Subscription;
@@ -29,10 +30,11 @@ export class AppComponent implements OnInit {
     this.hitbtcRate = '';
     this.pos = 0;
     this.pos2 = 0;
+    this.cursor = '_';
     this.partialText = '';
     this.partialText2 = '';
     this.fullText = 'Why there are more than one Bitcoin rate?';
-    this.fullText2 = 'The Bitcoin owners trade via different websites. Each website has it\'s own rate, similar to banks\' currency rates.';
+    this.fullText2 = 'The Bitcoin owners trade via different websites. Each website has it\'s own rate, similar to the bank currency rates.';
     this.now = new Date();
 
     this.currentTime = [ this.now.getMonth() + 1, this.now.getDate(), this.now.getFullYear() ];
@@ -96,13 +98,17 @@ export class AppComponent implements OnInit {
     const timer = TimerObservable.create(100, 100);
     this.subscription2 = timer.subscribe(t => {
       if (this.pos <= this.fullText.length - 1) {
-        this.partialText = this.partialText + this.fullText[this.pos];
+        this.partialText = this.partialText.replace(/_/g, '');
+        this.partialText = this.partialText + this.fullText[this.pos] + this.cursor;
         this.pos++;
         } else {
+          this.partialText = this.partialText.replace(/_/g, '');
           if (this.pos2 <= this.fullText2.length - 1) {
-            this.partialText2 = this.partialText2 + this.fullText2[this.pos2];
+            this.partialText2 = this.partialText2.replace(/_/g, '');
+            this.partialText2 = this.partialText2 + this.fullText2[this.pos2] + this.cursor;
             this.pos2++;
            } else {
+            this.partialText2 = this.partialText2.replace(/_/g, '');
             this.subscription2.unsubscribe();
            }
         }

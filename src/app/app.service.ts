@@ -21,10 +21,7 @@ export class AppService {
     return this.http.get(url);
   }
 
-  hitbtc(): Observable<any> {
-    const url = 'https://api.hitbtc.com/api/2/public/ticker/btcusd';
-    return this.http.get(url);
-  }
+
 }
 
 

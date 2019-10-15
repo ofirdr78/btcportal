@@ -12,11 +12,12 @@ import { Observable } from 'rxjs/Observable';
 export class AppComponent implements OnInit {
   coindeskRate: string;
   bitstampRate: string;
-  hitbtcRate: string;
   now: Date;
   currentTime: any;
   fullText: string;
   fullText2: string;
+  fullTextOrig: string;
+  fullText2Orig: string;
   partialText: string;
   partialText2: string;
   pos: number;
@@ -30,7 +31,6 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) {
     this.coindeskRate = '';
     this.bitstampRate = '';
-    this.hitbtcRate = '';
     this.pos = 0;
     this.pos2 = 0;
     this.cursor = '_';
@@ -40,6 +40,8 @@ export class AppComponent implements OnInit {
     this.companyLogo2 = 'All Bitcoin rates.';
     this.fullText = 'Why there are more than one Bitcoin rate?';
     this.fullText2 = 'The Bitcoin owners trade via different websites. Each website has it\'s own rate, similar to the bank currency rates.';
+    this.fullTextOrig = 'Why there are more than one Bitcoin rate?';
+    this.fullText2Orig = 'The Bitcoin owners trade via different websites. Each website has it\'s own rate, similar to the bank currency rates.';
     this.now = new Date();
 
     this.currentTime = [ this.now.getMonth() + 1, this.now.getDate(), this.now.getFullYear() ];
@@ -48,7 +50,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.coindesk();
     this.bitstamp();
-    this.hitbtc();
     this.explanation();
     this.startTimer();
 
@@ -78,23 +79,12 @@ export class AppComponent implements OnInit {
    }
   }
 
-  async hitbtc() {
-    try {
-     const response = await this.appService.hitbtc();
-     response.subscribe(data => {
-      this.hitbtcRate = data.last;
-  });
-   } catch (ex) {
-     console.error(`AppComponent::get:: errored with: ${ex}`);
-   }
-  }
-
+ 
   startTimer () {
     const timer = TimerObservable.create(60000, 60000);
     this.subscription = timer.subscribe(t => {
       this.coindesk();
       this.bitstamp();
-      this.hitbtc();
       this.explanation();
        });
   }
@@ -113,8 +103,11 @@ export class AppComponent implements OnInit {
             this.partialText2 = this.partialText2 + this.fullText2[this.pos2] + this.cursor;
             this.pos2++;
            } else {
-            this.partialText2 = this.partialText2.replace(/_/g, '');
-            this.subscription2.unsubscribe();
+            this.partialText = '';
+            this.partialText2 = '';
+            this.pos = 0;
+            this.pos2 = 0;
+         //   this.subscription2.unsubscribe();
            }
         }
        });

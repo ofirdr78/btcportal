@@ -16,8 +16,6 @@ export class AppComponent implements OnInit {
   currentTime: any;
   fullText: string;
   fullText2: string;
-  fullTextOrig: string;
-  fullText2Orig: string;
   partialText: string;
   partialText2: string;
   pos: number;
@@ -28,6 +26,7 @@ export class AppComponent implements OnInit {
   private tick: string;
   private subscription: Subscription;
   private subscription2: Subscription;
+  private updateSubscription: Subscription;
   constructor(private appService: AppService) {
     this.coindeskRate = '';
     this.bitstampRate = '';
@@ -40,8 +39,6 @@ export class AppComponent implements OnInit {
     this.companyLogo2 = 'All Bitcoin rates.';
     this.fullText = 'Why there are more than one Bitcoin rate?';
     this.fullText2 = 'The Bitcoin owners trade via different websites. Each website has it\'s own rate, similar to the bank currency rates.';
-    this.fullTextOrig = 'Why there are more than one Bitcoin rate?';
-    this.fullText2Orig = 'The Bitcoin owners trade via different websites. Each website has it\'s own rate, similar to the bank currency rates.';
     this.now = new Date();
 
     this.currentTime = [ this.now.getMonth() + 1, this.now.getDate(), this.now.getFullYear() ];
@@ -52,7 +49,9 @@ export class AppComponent implements OnInit {
     this.bitstamp();
     this.explanation();
     this.startTimer();
-
+    setInterval(function() {
+      location.reload();
+    }, 60000);
   }
 
   coindesk() {
